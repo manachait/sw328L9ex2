@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+<script type = "text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type = "text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+<script type = "text/javascript">
+$(init);
+function init(){
+    document.addEventListener("deviceready", onDeviceReady, false);
+}
+function onDeviceReady(){
+    var options = {frequency: 100};
+    navigator.compass.watchHeading(onSuccess, onError, options);
+}
+function onSuccess(heading){
+    var compassHeading = Math.round(heading.magneticHeading);
+    var output = "Heading: " + compassHeading + " degrees<br/>";
+    $("#degrees").html(output);
+    var rotateImg = 360 - compassHeading;
+    var newcompass = $("#compass");
+    newcompass.style.webkitTransform = "rotate()" + rotateImg + "deg)";
+}
+function onError(error){
+    alert("Error " + error.code);
+}
+</script>
+</head>
+<body>
+<h1>Basic Compass</h1>
+<div id="degrees"></div>
+<img id="compass" src="img/Compass.png" style="width:50%; margin-left: auto; margin-right: auto;"/>
+<script type="text/javascript" src="cordova.js"></script>
+</body>
+</html>
