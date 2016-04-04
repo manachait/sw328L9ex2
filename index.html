@@ -20,7 +20,7 @@ function onSuccess(heading){
     $("#degrees").html(output);
     var rotateImg = 360 - compassHeading;
     var newcompass = $("#compass");
-    newcompass.style.webkitTransform = "rotate()" + rotateImg + "deg)";
+    newcompass.style.webkitTransform = "rotate(" + rotateImg + "deg)";
 }
 function onError(error){
     alert("Error " + error.code);
